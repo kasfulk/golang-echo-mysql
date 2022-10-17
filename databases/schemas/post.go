@@ -1,4 +1,4 @@
-package models
+package schemas
 
 type Post struct {
 	Id    int64  `gorm:"primaryKey" json:"id"`

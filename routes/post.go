@@ -1,11 +1,11 @@
 package routes
 
 import (
-	"github.com/kasfulk/golang-echo-mysql/controllers"
+	"github.com/kasfulk/golang-echo-mysql/handlers"
 )
 
 func PostRoutes() {
 	// post route
-	e.GET("/post", controllers.PostIndex)
-	e.GET("/post/:id", controllers.PostDetail)
+	e.GET("/post", handlers.PostIndex)
+	e.GET("/post/:id", handlers.PostDetail)
 }

@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/joho/godotenv"
-	"github.com/kasfulk/golang-echo-mysql/models"
+	"github.com/kasfulk/golang-echo-mysql/databases/build"
 	"github.com/kasfulk/golang-echo-mysql/routes"
 )
 
@@ -12,6 +12,6 @@ func main() {
 		panic(err)
 	}
 
-	models.ConnectDatabase()
+	build.MigrateDatabase()
 	routes.BaseRoute()
 }
