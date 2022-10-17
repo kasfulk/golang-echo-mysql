@@ -7,4 +7,5 @@ import (
 func PostRoutes() {
 	// post route
 	e.GET("/post", controllers.PostIndex)
+	e.GET("/post/:id", controllers.PostDetail)
 }

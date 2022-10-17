@@ -13,6 +13,5 @@ func main() {
 	}
 
 	models.ConnectDatabase()
-
 	routes.BaseRoute()
 }

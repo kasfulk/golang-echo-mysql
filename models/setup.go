@@ -3,11 +3,11 @@ package models
 import (
 	"os"
 
-	_ "github.com/go-sql-driver/mysql"
-	"xorm.io/xorm"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
-var DB *xorm.Engine
+var DB *gorm.DB
 
 func ConnectDatabase() {
 	var err error
@@ -19,10 +19,11 @@ func ConnectDatabase() {
 	var DBName = os.Getenv("DB_NAME")
 
 	ConnectionString := DBUser + ":" + DBPass + "@tcp(" + DBHost + ":" + DBPort + ")/" + DBName + "?charset=utf8"
-	db, err := xorm.NewEngine("mysql", ConnectionString)
+	db, err := gorm.Open(mysql.Open(ConnectionString))
 	if err != nil {
 		panic(err)
 	}
+
+	db.AutoMigrate(&Post{})
 	DB = db
-	db.Sync2(new(Post))
 }
