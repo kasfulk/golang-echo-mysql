@@ -1,4 +1,4 @@
-package models
+package functions
 
 import (
 	"github.com/kasfulk/golang-echo-mysql/databases/build"
@@ -35,4 +35,17 @@ func ShowPostDetail(id string) (schemas.Post, error) {
 		panic(stmtManger)
 	}
 	return post, err
+}
+
+func DeletePost(id string) int32 {
+	var post schemas.Post
+	var DB = build.ConnectDatabase()
+	RowsAffected := DB.Delete(&post, id).RowsAffected
+	var stmtManger, ok = DB.ConnPool.(*gorm.PreparedStmtDB)
+	if ok {
+		stmtManger.Close()
+	} else {
+		panic(stmtManger)
+	}
+	return int32(RowsAffected)
 }
